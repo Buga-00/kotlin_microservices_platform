@@ -1,0 +1,23 @@
+server:
+  port: 8093
+spring:
+  rabbitmq:
+    host: localhost
+  application:
+    name: shipping-service
+  flyway:
+    ignore-missing-migrations: true
+    out-of-order: true
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/localdevdb
+    username: localdevuser
+    password: pirate
+    driverClassName: org.postgresql.Driver

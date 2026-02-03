@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  db:
+    container_name: 'postgres-db'
+    image: postgres:alpine
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=localdevdb
+      - POSTGRES_USER=localdevuser
+      - POSTGRES_PASSWORD=pirate
+  application:
+    container_name: 'shipping-service'
+    image: shipping-service:1
+    ports:
+      - '8093:8093'
+    profiles: ['shipping-service']
+    environment:
+      POSTGRES_JDBC_USER: localdevuser
+      POSTGRES_JDBC_PASS: pirate
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/localdevdb"
+      SPRING_PROFILES_ACTIVE: local
+
